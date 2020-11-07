@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import UserCreate from './UserCreate';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="ui container">
-        <h1>App</h1>
+const App = () => {
+  const [language, setLanguage] = useState('English');
+
+  return (
+    <div className="ui container">
+      <div>
+        Select a language: &nbsp;
+        <i className="flag us" onClick={() => setLanguage('English')} />
+        <i className="flag nl" onClick={() => setLanguage('Dutch')} />
       </div>
-    );
-  }
-}
+      Current language: {language}
+      <UserCreate />
+    </div>
+  );
+};
 
 export default App;
