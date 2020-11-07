@@ -14,15 +14,19 @@ const Button = () => {
     }
   };
 
+  const renderButton = (color: string) => {
+    return (
+      <button className={`ui button ${color || 'primary'}`}>
+        <LanguageContext.Consumer>
+          {(language) => buttonText(language)}
+        </LanguageContext.Consumer>
+      </button>
+    );
+  };
+
   return (
     <ColorContext.Consumer>
-      {(color) => (
-        <button className={`ui button ${color || 'primary'}`}>
-          <LanguageContext.Consumer>
-            {(language) => buttonText(language)}
-          </LanguageContext.Consumer>
-        </button>
-      )}
+      {(color) => renderButton(color)}
     </ColorContext.Consumer>
   );
 };
