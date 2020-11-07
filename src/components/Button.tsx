@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LanguageContext from '../contexts/LanguageContext';
 import ColorContext from '../contexts/ColorContext';
 
 const Button = () => {
-  const buttonText = (language: string) => {
+  const language = useContext(LanguageContext);
+  const color = useContext(ColorContext);
+
+  const buttonText = () => {
     switch (language) {
       case 'English':
         return 'Submit';
@@ -14,20 +17,10 @@ const Button = () => {
     }
   };
 
-  const renderButton = (color: string) => {
-    return (
-      <button className={`ui button ${color || 'primary'}`}>
-        <LanguageContext.Consumer>
-          {(language) => buttonText(language)}
-        </LanguageContext.Consumer>
-      </button>
-    );
-  };
-
   return (
-    <ColorContext.Consumer>
-      {(color) => renderButton(color)}
-    </ColorContext.Consumer>
+    <button className={`ui button ${color || 'primary'}`}>
+      {buttonText()}
+    </button>
   );
 };
 
