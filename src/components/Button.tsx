@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
 
 const Button = () => {
-  const language = useContext(LanguageContext);
-
-  const buttonText = () => {
+  const buttonText = (language: string) => {
     switch (language) {
       case 'English':
         return 'Submit';
@@ -16,9 +14,11 @@ const Button = () => {
   };
 
   return (
-    <div>
-      <button className="ui button primary">{buttonText()}</button>
-    </div>
+    <button className="ui button primary">
+      <LanguageContext.Consumer>
+        {(language) => buttonText(language)}
+      </LanguageContext.Consumer>
+    </button>
   );
 };
 
